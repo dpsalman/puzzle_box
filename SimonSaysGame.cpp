@@ -41,7 +41,7 @@ void SimonSaysGame::generate_sequence()
   /* Conditon for generate_sequence requires new_game boolean to be true. */
   
   // Collect all possible outputs to randomly select
-  int possible_outputs[outputs_size];
+  byte possible_outputs[outputs_size];
   for (int i = 0; i < outputs_size; i++)
   {
     possible_outputs[i] = *(outputs_ptr + i);
@@ -53,6 +53,12 @@ void SimonSaysGame::generate_sequence()
   {
     int random_choice = random(0, outputs_size);
     generated_sequence[i] = possible_outputs[random_choice] ;
+  }
+
+  // Generate default player sequernce
+  for (int i = 0; i < MAX_LEVEL; i++)
+  {
+    player_sequence[i] = 0;
   }
 
   // Reset conditions and variables
@@ -157,7 +163,10 @@ void SimonSaysGame::right_sequence()
       input_recieved = false;
       current_sequence = 1;
       show_sequence = true;
-      velocity -= 75;
+      if (velocity > 150)
+      {
+        velocity -= 75;
+      }
       level += 1;
     
       int new_score = get_score() + 10;

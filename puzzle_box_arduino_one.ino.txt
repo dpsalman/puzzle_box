@@ -1,0 +1,169 @@
+/* Puzzle Box Game IO List 
+ */
+// Simon Says Game - Common Input Pin
+#define SSG_COMMON_GAME_INPUT 42; 
+
+// Simon Says Game - Button Input Pins
+#define SSG_GAME_INPUT_1 22
+#define SSG_GAME_INPUT_2 23
+#define SSG_GAME_INPUT_3 24
+#define SSG_GAME_INPUT_4 25
+#define SSG_GAME_INPUT_5 26
+#define SSG_GAME_INPUT_6 27
+#define SSG_GAME_INPUT_7 28
+#define SSG_GAME_INPUT_8 29
+#define SSG_GAME_INPUT_9 30
+#define SSG_GAME_INPUT_10 31
+#define SSG_GAME_INPUT_11 32
+#define SSG_GAME_INPUT_12 33
+#define SSG_GAME_INPUT_13 34
+#define SSG_GAME_INPUT_14 35
+#define SSG_GAME_INPUT_15 36
+#define SSG_GAME_INPUT_16 37
+#define SSG_GAME_INPUT_17 38
+#define SSG_GAME_INPUT_18 39
+#define SSG_GAME_INPUT_19 40
+#define SSG_GAME_INPUT_20 41
+
+// Simon Says Game - Common Output Pin
+#define SSG_COMMON_GAME_OUTPUT 13;
+
+// Simon Says Game -  Output Pins
+#define SSG_GAME_OUTPUT_1 44
+#define SSG_GAME_OUTPUT_2 45
+#define SSG_GAME_OUTPUT_3 46
+#define SSG_GAME_OUTPUT_4 47
+#define SSG_GAME_OUTPUT_5 48
+#define SSG_GAME_OUTPUT_6 49
+#define SSG_GAME_OUTPUT_7 50
+#define SSG_GAME_OUTPUT_8 51
+#define SSG_GAME_OUTPUT_9 52
+#define SSG_GAME_OUTPUT_10 53
+#define SSG_GAME_OUTPUT_11 2
+#define SSG_GAME_OUTPUT_12 3
+#define SSG_GAME_OUTPUT_13 4
+#define SSG_GAME_OUTPUT_14 5
+#define SSG_GAME_OUTPUT_15 6
+#define SSG_GAME_OUTPUT_16 7
+#define SSG_GAME_OUTPUT_17 8
+#define SSG_GAME_OUTPUT_18 9
+#define SSG_GAME_OUTPUT_19 10
+#define SSG_GAME_OUTPUT_20 11
+
+// Follow The Leader Game - Common Input Pin
+#define FTLG_COMMON_GAME_INPUT 43; 
+
+// Follow The Leader Game - Input Pins
+#define FTLG_GAME_INPUT_1 A0
+#define FTLG_GAME_INPUT_2 A1
+#define FTLG_GAME_INPUT_3 A2
+#define FTLG_GAME_INPUT_4 A3
+#define FTLG_GAME_INPUT_5 A4
+#define FTLG_GAME_INPUT_6 A5
+#define FTLG_GAME_INPUT_7 A6
+#define FTLG_GAME_INPUT_8 A7
+#define FTLG_GAME_INPUT_9 A8
+#define FTLG_GAME_INPUT_10 A9
+#define FTLG_GAME_INPUT_11 A10
+#define FTLG_GAME_INPUT_12 A11
+#define FTLG_GAME_INPUT_13 A12
+#define FTLG_GAME_INPUT_14 A13
+#define FTLG_GAME_INPUT_15 A14
+#define FTLG_GAME_INPUT_16 A15
+#define FTLG_GAME_INPUT_17 14
+#define FTLG_GAME_INPUT_18 15
+#define FTLG_GAME_INPUT_19 16
+#define FTLG_GAME_INPUT_20 17 
+
+// Follow The Leader Game - Common Output Pin 
+#define FTLG_COMMON_GAME_OUTPUT 12;
+
+// Follow The Leader Game - Output Pins
+#define FTLG_GAME_OUTPUT_1 44
+#define FTLG_GAME_OUTPUT_2 45
+#define FTLG_GAME_OUTPUT_3 46
+#define FTLG_GAME_OUTPUT_4 47
+#define FTLG_GAME_OUTPUT_5 48
+#define FTLG_GAME_OUTPUT_6 49
+#define FTLG_GAME_OUTPUT_7 50
+#define FTLG_GAME_OUTPUT_8 51
+#define FTLG_GAME_OUTPUT_9 52
+#define FTLG_GAME_OUTPUT_10 53
+#define FTLG_GAME_OUTPUT_11 2
+#define FTLG_GAME_OUTPUT_12 3
+#define FTLG_GAME_OUTPUT_13 4
+#define FTLG_GAME_OUTPUT_14 5
+#define FTLG_GAME_OUTPUT_15 6
+#define FTLG_GAME_OUTPUT_16 7
+#define FTLG_GAME_OUTPUT_17 8
+#define FTLG_GAME_OUTPUT_18 9
+#define FTLG_GAME_OUTPUT_19 10
+#define FTLG_GAME_OUTPUT_20 11
+
+/* Game Class Usage: 
+ * #include "Game.h"
+ * Game game = Game();
+ */
+ 
+// Simon Says Game Class Usage:
+#include "SimonSaysGame.h"
+SimonSaysGame simon_says_game = SimonSaysGame();
+
+// Simon Says Game Setup:
+byte ssg_common_input = SSG_COMMON_GAME_INPUT;
+byte ssg_common_output = SSG_COMMON_GAME_OUTPUT;
+byte ssg_game_input[20] = { SSG_GAME_INPUT_1, SSG_GAME_INPUT_2, SSG_GAME_INPUT_3, SSG_GAME_INPUT_4, SSG_GAME_INPUT_5, SSG_GAME_INPUT_6, SSG_GAME_INPUT_7, SSG_GAME_INPUT_8, SSG_GAME_INPUT_9, SSG_GAME_INPUT_10, SSG_GAME_INPUT_11, SSG_GAME_INPUT_12, SSG_GAME_INPUT_13, SSG_GAME_INPUT_14, SSG_GAME_INPUT_15, SSG_GAME_INPUT_16, SSG_GAME_INPUT_17, SSG_GAME_INPUT_18, SSG_GAME_INPUT_19, SSG_GAME_INPUT_20 };
+byte ssg_game_output[20] = { SSG_GAME_OUTPUT_1, SSG_GAME_OUTPUT_2, SSG_GAME_OUTPUT_3, SSG_GAME_OUTPUT_4, SSG_GAME_OUTPUT_5, SSG_GAME_OUTPUT_6, SSG_GAME_OUTPUT_7, SSG_GAME_OUTPUT_8, SSG_GAME_OUTPUT_9, SSG_GAME_OUTPUT_10, SSG_GAME_OUTPUT_11, SSG_GAME_OUTPUT_12, SSG_GAME_OUTPUT_13, SSG_GAME_OUTPUT_14, SSG_GAME_OUTPUT_15, SSG_GAME_OUTPUT_16, SSG_GAME_OUTPUT_17, SSG_GAME_OUTPUT_18, SSG_GAME_OUTPUT_19, SSG_GAME_OUTPUT_20 };
+
+// Follow The Leader Game Class Usage:
+#include "FollowTheLeaderGame.h"
+FollowTheLeaderGame follow_the_leader_game = FollowTheLeaderGame();
+
+//Follow The Leader Game Setup:
+byte ftlg_common_input = FTLG_COMMON_GAME_INPUT;
+byte ftlg_common_output = FTLG_COMMON_GAME_OUTPUT;
+byte ftlg_game_input[20] = { FTLG_GAME_INPUT_1, FTLG_GAME_INPUT_2, FTLG_GAME_INPUT_3, FTLG_GAME_INPUT_4, FTLG_GAME_INPUT_5, FTLG_GAME_INPUT_6, FTLG_GAME_INPUT_7, FTLG_GAME_INPUT_8, FTLG_GAME_INPUT_9, FTLG_GAME_INPUT_10, FTLG_GAME_INPUT_11, FTLG_GAME_INPUT_12, FTLG_GAME_INPUT_13, FTLG_GAME_INPUT_14, FTLG_GAME_INPUT_15, FTLG_GAME_INPUT_16, FTLG_GAME_INPUT_17, FTLG_GAME_INPUT_18, FTLG_GAME_INPUT_19, FTLG_GAME_INPUT_20 };
+byte ftlg_game_output[20] = { FTLG_GAME_OUTPUT_1, FTLG_GAME_OUTPUT_2, FTLG_GAME_OUTPUT_3, FTLG_GAME_OUTPUT_4, FTLG_GAME_OUTPUT_5, FTLG_GAME_OUTPUT_6, FTLG_GAME_OUTPUT_7, FTLG_GAME_OUTPUT_8, FTLG_GAME_OUTPUT_9, FTLG_GAME_OUTPUT_10, FTLG_GAME_OUTPUT_11, FTLG_GAME_OUTPUT_12, FTLG_GAME_OUTPUT_13, FTLG_GAME_OUTPUT_14, FTLG_GAME_OUTPUT_15, FTLG_GAME_OUTPUT_16, FTLG_GAME_OUTPUT_17, FTLG_GAME_OUTPUT_18, FTLG_GAME_OUTPUT_19, FTLG_GAME_OUTPUT_20 };
+
+void setup() 
+{
+  /* Serial Monitor Initialization:
+   */
+  
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for intial serial 1 port to initialize
+  }
+  Serial.println("Serial 0 Initialized!");
+  
+  /* Game Class Initialization:
+   * game.init(game_input, sizeof(game_input)/sizeof(byte), game_output, sizeof(game_output)/sizeof(byte));
+   */
+
+  // Simon Says Game 
+  simon_says_game.init(ssg_game_input, sizeof(ssg_game_input)/sizeof(byte), ssg_game_output, sizeof(ssg_game_output)/sizeof(byte));
+  
+  // Follow The Leader Game  
+  follow_the_leader_game.init(ftlg_game_input, sizeof(ftlg_game_input)/sizeof(byte), ftlg_game_output, sizeof(ftlg_game_output)/sizeof(byte));
+} 
+ 
+void loop()
+{
+  /* Game Execution:
+   * game.execute();
+   */
+
+  // Simon Says Game
+  digitalWrite(ssg_common_input, LOW);
+  digitalWrite(ssg_common_output, LOW);
+  digitalWrite(ftlg_common_input, HIGH);
+  digitalWrite(ftlg_common_output, HIGH);
+  simon_says_game.execute();
+
+  // Follow The Leader Game
+  digitalWrite(ssg_common_input, HIGH);
+  digitalWrite(ssg_common_output, HIGH);
+  digitalWrite(ftlg_common_input, LOW);
+  digitalWrite(ftlg_common_output, LOW);
+  follow_the_leader_game.execute();
+}

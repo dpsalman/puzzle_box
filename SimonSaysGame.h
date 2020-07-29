@@ -27,8 +27,8 @@ class SimonSaysGame : public Game
 {
   private:
     const static int MAX_LEVEL = 4;
-    int *generated_sequence;
-    int *player_sequence;
+    byte generated_sequence[MAX_LEVEL];
+    byte player_sequence[MAX_LEVEL];
     bool new_game;
     bool show_sequence;
     bool input_recieved;
@@ -54,8 +54,6 @@ class SimonSaysGame : public Game
     void reset_leds();
   public:
     SimonSaysGame() : Game() {
-      generated_sequence = new int[MAX_LEVEL];
-      player_sequence = new int[MAX_LEVEL];
       last_played_sequence_time, play_sequence_counter, play_sequence_level,
       last_correct_response_time, correct_response_counter,
       last_incorrect_response_time, incorrect_response_counter, 
