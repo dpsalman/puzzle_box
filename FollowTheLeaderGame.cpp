@@ -1,5 +1,3 @@
-/*
-*/
 #include "FollowTheLeaderGame.h"
 
 /* Public Methods */
@@ -64,7 +62,7 @@ void FollowTheLeaderGame::execute()
         game_mode = right_dependent;
         break;
       case right_dependent:
-        game_mode =  left_dependent
+        game_mode =  left_dependent;
       default:
         break;    
     }
@@ -74,32 +72,6 @@ void FollowTheLeaderGame::execute()
 /* Private Methods */
     
 void FollowTheLeaderGame::check_left_dependent_mode(byte input_pin, byte output_pin, byte mapped_value)
-{
-  if (digitalRead(input_pin) == LOW)
-  {
-    if (left_mode_sequence[current_step_index] == mapped_value)
-    {
-      digitalWrite(output_pin, HIGH);
-      current_step_index++;
-    } 
-  } 
-  else 
-  {
-    if (left_mode_sequence[current_step_index] == mapped_value)
-    {
-        pulse(output_pin);
-    }
-    else
-    { 
-      if (!check_completed(output_pin))
-      {
-        digitalWrite(output_pin, LOW);
-      }
-    }
-  }  
-}
-
-void FollowTheLeaderGame::check_right_dependent_mode(byte input_pin, byte output_pin, byte mapped_value)
 {
   if (digitalRead(input_pin) == HIGH)
   {
@@ -125,54 +97,80 @@ void FollowTheLeaderGame::check_right_dependent_mode(byte input_pin, byte output
   }  
 }
 
-void FollowTheLeaderGame::pulse(int output_pin)
+void FollowTheLeaderGame::check_right_dependent_mode(byte input_pin, byte output_pin, byte mapped_value)
 {
-    if (millis() > last_pulse_time + 500)
+  if (digitalRead(input_pin) == LOW)
+  {
+    if (left_mode_sequence[current_step_index] == mapped_value)
     {
-        if (pulse_counter % 2 != 0)
-        {
-            digitalWrite(output_pin, HIGH);
-        } 
-        else
-        {
-            digitalWrite(output_pin, LOW);
-        }
-        if (pulse_counter > 2)
-        {
-            pulse_counter = 0;
-        }
-        else
-        {
-            pulse_counter++;
-            last_pulse_time = millis();
-        }
+      digitalWrite(output_pin, HIGH);
+      current_step_index++;
+    } 
+  } 
+  else 
+  {
+    if (left_mode_sequence[current_step_index] == mapped_value)
+    {
+        pulse(output_pin);
     }
+    else
+    { 
+      if (!check_completed(output_pin))
+      {
+        digitalWrite(output_pin, LOW);
+      }
+    }
+  }  
+}
+
+void FollowTheLeaderGame::pulse(byte output_pin)
+{
+  if (millis() > last_pulse_time + 500)
+  {
+    if (pulse_counter % 2 != 0)
+    {
+        digitalWrite(output_pin, HIGH);
+    } 
+    else
+    {
+        digitalWrite(output_pin, LOW);
+    }
+    if (pulse_counter > 2)
+    {
+        pulse_counter = 0;
+    }
+    else
+    {
+        pulse_counter++;
+        last_pulse_time = millis();
+    }
+  }
 }
 
 bool FollowTheLeaderGame::check_completed(byte output_pin)
 {
-    bool return_val = false;
-    for (int i = 0; i < current_step_index; i++)
+  bool return_val = false;
+  for (int i = 0; i < current_step_index; i++)
+  {
+    switch(game_mode)
     {
-        switch(game_mode)
+      case left_dependent:
+        if (left_mode_sequence[current_step_index] == output_pin)
         {
-            case left_dependent:
-              if (left_mode_sequence[current_step_index] == output_pin)
-              {
-                  return_val = true;
-              } 
-              break;
-            case right_dependent:
-              if (right_mode_sequence[current_step_index] == output_pin)
-              {
-                  return_val = true;
-              } 
-              break;
-            default:
-              break;
-        }
+          return_val = true;
+        } 
+        break;
+      case right_dependent:
+        if (right_mode_sequence[current_step_index] == output_pin)
+        {
+          return_val = true;
+        } 
+        break;
+      default:
+        break;
     }
-    return return_val;
+  }
+  return return_val;
 }
 
 FollowTheLeaderGame;

@@ -24,6 +24,18 @@
 // Adafruit SoundFX Soundboard - Manual Reset Pin
 #define AF_SFX_RST 20
 
+// Simon Says Game - Button Input Pins
+#define SSG_GAME_INPUT_1 A3
+#define SSG_GAME_INPUT_2 A2
+#define SSG_GAME_INPUT_3 A1
+#define SSG_GAME_INPUT_4 A0
+
+// Simon Says Game -  Output Pins
+#define SSG_GAME_OUTPUT_1 10
+#define SSG_GAME_OUTPUT_2 11
+#define SSG_GAME_OUTPUT_3 12
+#define SSG_GAME_OUTPUT_4 13
+
 // Under Pressure Game - Analog Pullup Input
 #define UPG_GAME_INPUT_1 A15
 
@@ -43,17 +55,17 @@
 #define UPG_GAME_OUTPUT_SSD_D3 52
 #define UPG_GAME_OUTPUT_SSD_D4 53
 
-// Simon Says Game - Button Input Pins
-#define SSG_GAME_INPUT_1 A3
-#define SSG_GAME_INPUT_2 A2
-#define SSG_GAME_INPUT_3 A1
-#define SSG_GAME_INPUT_4 A0
+// Follow The Leader Game - Input Pins
+#define FTLG_GAME_INPUT_1 A3
+#define FTLG_GAME_INPUT_2 A2
+#define FTLG_GAME_INPUT_3 A1
+#define FTLG_GAME_INPUT_4 A0
 
-// Simon Says Game -  Output Pins
-#define SSG_GAME_OUTPUT_1 10
-#define SSG_GAME_OUTPUT_2 11
-#define SSG_GAME_OUTPUT_3 12
-#define SSG_GAME_OUTPUT_4 13
+// Follow The Leader Game - Output Pins
+#define FTLG_GAME_OUTPUT_1 10
+#define FTLG_GAME_OUTPUT_2 11
+#define FTLG_GAME_OUTPUT_3 12
+#define FTLG_GAME_OUTPUT_4 13
 
 /* Adafruit SoundFX Soundboard Usage:
  */
@@ -95,6 +107,13 @@ byte upg_game_input = UPG_GAME_INPUT_1;
 byte upg_game_ssd_output[12] = { UPG_GAME_OUTPUT_SSD_P, UPG_GAME_OUTPUT_SSD_A, UPG_GAME_OUTPUT_SSD_B, UPG_GAME_OUTPUT_SSD_C, UPG_GAME_OUTPUT_SSD_D, UPG_GAME_OUTPUT_SSD_E, UPG_GAME_OUTPUT_SSD_F, UPG_GAME_OUTPUT_SSD_G, UPG_GAME_OUTPUT_SSD_D1, UPG_GAME_OUTPUT_SSD_D2, UPG_GAME_OUTPUT_SSD_D3, UPG_GAME_OUTPUT_SSD_D4 };
 SevenSegmentDisplay *upg_ssd_display_ptr = new SevenSegmentDisplay();
 
+// Follow The Leader Game Class Usage:
+#include "FollowTheLeaderGame.h"
+FollowTheLeaderGame follow_the_leader_game = FollowTheLeaderGame();
+
+byte ftlg_game_input[4] = { FTLG_GAME_INPUT_1, FTLG_GAME_INPUT_2, FTLG_GAME_INPUT_3, FTLG_GAME_INPUT_4 };
+byte ftlg_game_output[4] = { FTLG_GAME_OUTPUT_1, FTLG_GAME_OUTPUT_2, FTLG_GAME_OUTPUT_3, FTLG_GAME_OUTPUT_4 };
+
 void setup() 
 {
   /* Serial Monitor Initialization:
@@ -132,6 +151,9 @@ void setup()
   // Under Pressure Game
   upg_ssd_display_ptr->init(upg_game_ssd_output);
   under_pressure_game.init(upg_game_input, upg_ssd_display_ptr);  
+
+  // Follow The Leader Game
+  follow_the_leader_game.init(ftlg_game_input, sizeof(ftlg_game_input)/sizeof(byte), ftlg_game_output, sizeof(ftlg_game_output)/sizeof(byte));
 } 
  
 void loop()
@@ -146,13 +168,16 @@ void loop()
   // Under Pressure Game
   under_pressure_game.execute();
 
+  // Follow The Leader Game
+  follow_the_leader_game.execute();
+
   /* Game Manager:
    */
   
   int total_score = 0;
   int total_strikes = 0;
-  total_score += simon_says_game.get_score() + under_pressure_game.get_score();
-  total_strikes += simon_says_game.get_strikes() + under_pressure_game.get_strikes();
+  total_score += simon_says_game.get_score() + under_pressure_game.get_score() + follow_the_leader_game.get_score();
+  total_strikes += simon_says_game.get_strikes() + under_pressure_game.get_strikes() + follow_the_leader_game.get_strikes();
  
   if (digitalRead(GM_SCORE_INPUT) == LOW)
   {

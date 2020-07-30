@@ -14,9 +14,9 @@ enum FollowModes {
 class FollowTheLeaderGame : public Game
 {
   private:
-    const static int MAX_STEPS = 20;
-    const byte left_mode_sequence[MAX_STEPS] = { 5, 10, 15, 20, 4, 9, 14, 19, 3, 8, 13, 18, 2, 7, 12, 17, 1, 6, 11, 16 };
-    const byte right_mode_sequence[MAX_STEPS] = { 1, 6, 11, 16, 2, 7, 12, 17, 3, 8, 13, 18, 4, 9, 14, 19, 5, 10, 15, 20 };
+    const static int MAX_STEPS = 4;
+    const byte left_mode_sequence[MAX_STEPS] = { 1, 2, 3, 4 };
+    const byte right_mode_sequence[MAX_STEPS] = { 4, 3, 2, 1 };
     FollowModes game_mode;
     int current_step_index;
     int last_pulse_time;
